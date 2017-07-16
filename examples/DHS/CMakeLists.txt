@@ -19,7 +19,7 @@ FILE(GLOB SOURCES "*.cu" "*.h")
 
 LIST(APPEND CMAKE_CXX_FLAGS "-m64 -O3 -ffast-math -Wall")
 
-LIST(APPEND CUDA_NVCC_FLAGS "-ccbin ${GCC_CUDA_VERSION} -std=c++11 -gencode arch=compute_${GPU_ARCH},code=sm_${GPU_ARCH}")
+LIST(APPEND CUDA_NVCC_FLAGS "-D_FORCE_INLINES -ccbin ${GCC_CUDA_VERSION} -std=c++11 -gencode arch=compute_${GPU_ARCH},code=sm_${GPU_ARCH}")
 
 SET(LIB_NAME "dhs")
 

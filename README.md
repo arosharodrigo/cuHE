@@ -30,7 +30,7 @@ Compile
 -------
 
 	cd cuhe
-	cmake ./
+	cmake ./ OR [cmake -DGPU_ARCH:STRING=52 -DGCC_CUDA_VERSION:STRING=gcc-5  ./]
 	make
 
 options to cmake command defaults are:
@@ -101,3 +101,33 @@ We want to acknowledge [Andrea Peruffo][18] for improving and debugging the code
 [16]: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=7041001&tag=1 "Dai2014IEEE"
 [17]: http://link.springer.com/chapter/10.1007%2F978-3-662-48051-9_12 "Dai2015aSpringer"
 [18]: https://github.com/andreaTP "AndreaPeruffoGitHub"
+
+Additional library installations
+--------------------------------
+
+1. NTL & GMP installations
+   http://www.shoup.net/ntl/doc/tour-unix.html
+   ./configure -fPIC
+   
+   http://linkevin.me/tutorial-installing-gmp-library-ubuntu/
+   http://www.shoup.net/ntl/doc/tour-gmp.html
+   ./configure --enable-cxx
+   
+2. Docker installations [nvidia-modprobe -> docker-engine -> nvidia-docker]
+   
+   2.1 sudo apt install nvidia-modprobe
+   2.2 
+   sudo apt-get update
+   sudo apt-get install apt-transport-https ca-certificates
+   sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+   sudo echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list
+   sudo apt-get update
+   sudo apt-get purge lxc-docker docker.io
+   sudo apt-get install linux-image-extra-$(uname -r)
+   sudo apt-get install docker-engine
+   sudo service docker start
+   
+   2.3 https://github.com/NVIDIA/nvidia-docker
+   wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
+   sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
+   OR sudo dpkg -i nvidia-docker_1.0.1-1_amd64.deb

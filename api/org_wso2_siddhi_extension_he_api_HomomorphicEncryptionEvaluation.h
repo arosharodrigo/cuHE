@@ -7,6 +7,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/*
+ * Class:     org_wso2_siddhi_extension_he_api_HomomorphicEncryptionEvaluation
+ * Method:    comapareEqualIntInt
+ * Signature: (II)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncryptionEvaluation_compareEqualIntInt
+  (JNIEnv *, jobject, jint, jint);
+
 /*
  * Class:     org_wso2_siddhi_extension_he_api_HomomorphicEncryptionEvaluation
  * Method:    comapareGreaterThanIntInt
@@ -15,7 +24,9 @@ extern "C" {
 JNIEXPORT jboolean JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncryptionEvaluation_compareGreaterThanIntInt
   (JNIEnv *, jobject, jint, jint);
 
-void checkAnd();
+void init();
+void destroy();
+int * convertToArray(int, int);
 
 #ifdef __cplusplus
 }

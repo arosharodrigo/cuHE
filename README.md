@@ -29,6 +29,7 @@ System Requirements
 Compile
 -------
 
+	Configure FindGMP.cmake & FindNTL.cmake files with $HOME/sw path
 	cd cuhe
 	cmake ./ OR [cmake -DGPU_ARCH:STRING=52 -DGCC_CUDA_VERSION:STRING=gcc-5  ./]
 	make

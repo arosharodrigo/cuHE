@@ -10,6 +10,7 @@ FIND_PACKAGE(NTL REQUIRED)
 FIND_PACKAGE(OpenMP REQUIRED)
 FIND_PACKAGE(CUDA REQUIRED)
 FIND_PACKAGE(GMP REQUIRED)
+FIND_PACKAGE(Boost REQUIRED COMPONENTS iostreams)
 
 FIND_LIBRARY(CUHE_LIBRARY NAMES cuHEShared PATHS ${CMAKE_SOURCE_DIR}/../cuhe)
 
@@ -36,7 +37,7 @@ CUDA_ADD_LIBRARY( dhsShared
     SHARED
 )
 
-TARGET_LINK_LIBRARIES(dhsShared ${CUHE_LIBRARY} ${NTL_LIBRARY})
+TARGET_LINK_LIBRARIES(dhsShared ${CUHE_LIBRARY} ${NTL_LIBRARY} ${Boost_IOSTREAMS_LIBRARY})
 
 SET(LIB_NAME "he")
 
@@ -47,7 +48,8 @@ include_directories(${JAVA_INCLUDE_PATH2})
 
 CUDA_ADD_LIBRARY( heShared
     org_wso2_siddhi_extension_he_api_HomomorphicEncryptionEvaluation.cpp
+    org_wso2_siddhi_extension_he_api_HomomorphicEncDecService.cpp
     SHARED
 )
 
-TARGET_LINK_LIBRARIES(heShared dhsShared ${CUHE_LIBRARY} ${NTL_LIBRARY})
+TARGET_LINK_LIBRARIES(heShared dhsShared ${CUHE_LIBRARY} ${NTL_LIBRARY} ${Boost_IOSTREAMS_LIBRARY})

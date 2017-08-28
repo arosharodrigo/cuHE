@@ -12,7 +12,7 @@ JNIEXPORT void JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecSe
 JNIEXPORT void JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecService_destroy
   (JNIEnv *, jobject);
 
-JNIEXPORT jstring JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecService_encrypt
+JNIEXPORT jbyteArray JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecService_encrypt
   (JNIEnv *, jobject, jstring);
 
 JNIEXPORT jstring JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecService_decrypt

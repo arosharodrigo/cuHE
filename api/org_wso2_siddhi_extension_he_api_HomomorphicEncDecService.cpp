@@ -63,7 +63,7 @@ JNIEXPORT void JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecSe
 	destroy();
 }
 
-JNIEXPORT jstring JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecService_encrypt
+JNIEXPORT jbyteArray JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecService_encrypt
   (JNIEnv * env, jobject jobj, jstring binaryForm32) {
 	int bitLength = 32;
 	const char *cstr = env->GetStringUTFChars(binaryForm32, NULL);
@@ -85,17 +85,16 @@ JNIEXPORT jstring JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDe
 	ss << y[8189];
 	
 	string str = ss.str();
-	jstring orb_string = env->NewStringUTF(str.c_str());
+//	jstring orb_string = env->NewStringUTF(str.c_str());
 	
-//	int byteCount = str.length();
-//	int byteCount = bitLength;
+	int byteCount = str.length();
 //	jbyte* pNativeMessage = reinterpret_cast<const jbyte*>(ss.str().c_str());
-//	jbyte* pNativeMessage = (jbyte*)str.c_str();
+	jbyte* pNativeMessage = (jbyte*)str.c_str();
 //	jbyte* pNativeMessage = (jbyte*)cstr;
-//	jbyteArray bytes = env->NewByteArray(byteCount);
-//	env->SetByteArrayRegion(bytes, 0, byteCount, pNativeMessage);
+	jbyteArray bytes = env->NewByteArray(byteCount);
+	env->SetByteArrayRegion(bytes, 0, byteCount, pNativeMessage);
 
-	return orb_string;
+	return bytes;
 }
 
 JNIEXPORT jstring JNICALL Java_org_wso2_siddhi_extension_he_api_HomomorphicEncDecService_decrypt
